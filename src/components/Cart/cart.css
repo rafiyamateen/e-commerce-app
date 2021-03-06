@@ -1,0 +1,13 @@
+#cart_img{
+    width: 200px;
+    height: 200px;
+}
+#cart_row{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    max-width: 700px;
+}
+#cart_container{
+    
+}

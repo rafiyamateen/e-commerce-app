@@ -1,0 +1,15 @@
+#detail_Col{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#quan_div{
+    display: flex;
+    justify-content: space-around;
+
+}
+#add_btn{
+    background-color: #7d304d;
+    border: none;
+    text-decoration: none;
+}

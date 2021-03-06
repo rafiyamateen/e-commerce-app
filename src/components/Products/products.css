@@ -1,0 +1,37 @@
+.prod_card{
+    margin: 10px;
+    box-shadow: 2px 2px 10px grey;
+    position: relative;
+}
+.prod_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.heart{
+    color: #953057 ;
+font-weight: bold;
+    margin: 0 1px 2px 1px;
+    font-size: 20px;
+    cursor: pointer;
+}
+/* #fav{
+} */
+.card_img{
+    max-height: 250px;
+}
+.card_body{
+    padding: 15px;
+}
+.circle{
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 1px 1px 8px rgb(100, 99, 99);
+    padding: 0px 2px;
+    /* color: transparent; */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* z-index: 1; */
+}

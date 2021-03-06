@@ -1,0 +1,49 @@
+.header {
+    background-color: #7d304d !important;
+    /* justify-content:flex-start; */
+    position: relative;
+}
+
+@media screen and (max-width:991px) {
+    #nav_brand {
+        position: absolute;
+        left: 85px;
+        top: 10px
+    }
+}
+
+.sell_btn {
+    background-color: transparent;
+    border: 1px solid #ca839f;
+    border-radius: 12px;
+    padding: 7px;
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
+.sell_btn:hover {
+    box-shadow: 1px 1px 6px #4d162c;
+}
+
+#cart_icon {
+    font-size: 22px;
+    margin: 10px;
+    color: rgb(218, 205, 205);
+    /* position: absolute;
+    right: 10px;
+    top: 50%; */
+}
+
+#nav_div {
+    align-self: flex-end;
+}
+
+.nav_links>a {
+    color: rgba(225, 225, 225, .5) !important;
+    text-decoration: none;
+    margin: 7px 2px 0 6px;
+}
+.nav_links>a:hover{
+    color: rgba(225, 225, 225, .75) !important;
+}
