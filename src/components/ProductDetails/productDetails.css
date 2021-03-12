@@ -1,15 +1,22 @@
-#detail_Col{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-}
-#quan_div{
+#detail_Col {
     display: flex;
     justify-content: space-around;
-
+    flex-direction: column;
 }
-#add_btn{
+
+#quan_div {
+    display: flex;
+}
+
+#add_btn {
     background-color: #7d304d;
     border: none;
     text-decoration: none;
+}
+
+@media screen and (max-width:500px) {
+    .prod_details {
+        display: flex;
+        flex-direction: column;
+    }
 }

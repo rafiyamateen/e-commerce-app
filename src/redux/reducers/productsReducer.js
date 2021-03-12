@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import itemsList from "../../assets/products";
 import { ADD_TO_FAVORITES, SELL_PRODUCT } from "../actionTypes";
 const initState = {
@@ -14,19 +13,29 @@ const products = (state = initState, action) => {
             return { ...state, products: newList }
         }
         case ADD_TO_FAVORITES: {
-            // console.log(typeof (state.products), action.payload);
-            // const favorites = JSON.parse(localStorage.getItem('favorites'))
-            for (const fav of action.payload) {
+            let itemExist = false
+            for (const favProd of state.favorites) {
+                if (action.payload.id === favProd.id) {
+                    itemExist = true
+                    action.payload.fav = false
+                    state.favorites = state.favorites.filter(fav => fav.id !== action.payload.id)
+                    break
+                }
+            }
+            if (!itemExist) {
+                action.payload.fav = true
+                state.favorites.push(action.payload)
+            }
+            localStorage.setItem('favorites', JSON.stringify(state.favorites))
+            for (const fav of state.favorites) {
                 for (const item of state.products) {
-                    if (item.fav === undefined) { item.fav = false }
                     if (fav.id === item.id) {
                         item.fav = true
                     }
                 }
             }
-            console.log(state.products);
             localStorage.setItem('allProducts', JSON.stringify(state.products))
-            return { products: state.products, favorites: action.payload }
+            return { products: state.products, favorites: state.favorites }
         }
         default: {
             localStorage.setItem('allProducts', JSON.stringify(state.products))

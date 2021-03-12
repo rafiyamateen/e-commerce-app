@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, QUANTITY_CHANGER, ADD_TO_FAVORITES } from "../actionTypes"
+import { ADD_TO_CART, REMOVE_FROM_CART, QUANTITY_CHANGER, ORDER_PLACED } from "../actionTypes"
 
 export const addToCart = (product, details) => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
@@ -39,5 +39,11 @@ export const quantityChanger = (item, quantity) => {
     return {
         type: QUANTITY_CHANGER,
         payload: cartItems
+    }
+}
+export const orderPlaced = () => {
+    localStorage.removeItem('cartItems')
+    return {
+        type: ORDER_PLACED
     }
 }

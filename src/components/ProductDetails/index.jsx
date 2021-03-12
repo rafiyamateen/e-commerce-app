@@ -5,12 +5,12 @@ import { addToCart } from "../../redux/actions/cartActions";
 import Quantity from "./Quantity";
 import './productDetails.css'
 
-export default () => {
+const ProductDetails = () => {
     const detail = useSelector(state => state.products.products),
         dispatch = useDispatch(),
         params = useParams()
     for (const i in detail) {
-        if (detail[i].title === params.product) {
+        if (detail[i].title === params.product.replace(/_/g, ' ')) {
             var product = detail[i]
             break
         }
@@ -18,9 +18,10 @@ export default () => {
     const title = product.title,
         titleTransform = title[0].toUpperCase() + title.slice(1)
     document.title = `${product.category} | ${titleTransform}`
+
     return (
         <Container>
-            <Row>
+            <Row className='prod_details'>
                 <Col>
                     <Card.Img src={product.img} />
                 </Col>
@@ -31,10 +32,11 @@ export default () => {
                     </div>
                     <div id='quan_div'>
                         <Quantity item={product} />
-                        <Button id='add_btn' onClick={() => dispatch(addToCart(product, true))} >Add to cart</Button>
+                        <Button id='add_btn' className='fullWidthBtn' onClick={() => dispatch(addToCart(product, true))} >Add to cart</Button>
                     </div>
                 </Col>
             </Row>
         </Container>
     )
 }
+export default ProductDetails

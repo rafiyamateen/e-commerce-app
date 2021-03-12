@@ -1,0 +1,27 @@
+.prod_detail {
+    display: flex !important;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.checkout_container {
+    max-width: 800px;
+    padding: 15px;
+}
+
+.checkout_cards {
+    border: 1px solid rgb(197, 195, 195);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 1px 1px 3px gray;
+    margin: 5px;
+}
+
+.edit_sec {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit_icon {
+    font-size: 20px;
+}

@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { Card } from "react-bootstrap"
-import { useDispatch } from "react-redux"
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import './quantity.css'
 
 const Quantity = ({ item }) => {
@@ -15,11 +14,11 @@ const Quantity = ({ item }) => {
             }
         }
     return (
-        <div>
-            <Card.Text>Quantity : {quantity} <span className='decrement' onClick={decrement} >-</span><span className='increment' onClick={increment} >+</span> </Card.Text>
+        <div className='quan_div'>
+            <AiOutlineMinus onClick={decrement} className='decrement' />
+            {quantity}<AiOutlinePlus onClick={increment} className='increment' />
         </div>
     )
 }
 
 export default Quantity
-

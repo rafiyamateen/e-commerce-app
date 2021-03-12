@@ -1,0 +1,19 @@
+.form {
+    border: 1px solid rgb(167, 167, 167);
+    box-shadow: 2px 2px 5px gray;
+    border-radius: 6px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.text {
+    text-align: right;
+    padding: 0 10px 10px;
+}
+
+.form h2 {
+    border-bottom: 2px solid rgb(177, 175, 175);
+    padding-bottom: 5px;
+    color: #7d304d;
+}

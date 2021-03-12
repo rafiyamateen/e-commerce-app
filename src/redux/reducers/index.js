@@ -1,8 +1,7 @@
 import products from "./productsReducer";
 import cart from "./cartReducer";
-import favorites from './favoritesReducer'
+import form from './formReducer'
 import { combineReducers } from "redux";
 export default combineReducers({
-    products,cart
-    // ,favorites
+    products, cart, form
 })

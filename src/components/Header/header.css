@@ -1,17 +1,3 @@
-.header {
-    background-color: #7d304d !important;
-    /* justify-content:flex-start; */
-    position: relative;
-}
-
-@media screen and (max-width:991px) {
-    #nav_brand {
-        position: absolute;
-        left: 85px;
-        top: 10px
-    }
-}
-
 .sell_btn {
     background-color: transparent;
     border: 1px solid #ca839f;
@@ -29,21 +15,50 @@
 #cart_icon {
     font-size: 22px;
     margin: 10px;
+    margin-right: 0;
     color: rgb(218, 205, 205);
-    /* position: absolute;
-    right: 10px;
-    top: 50%; */
 }
 
 #nav_div {
     align-self: flex-end;
 }
 
+#nav_div a {
+    display: inline;
+    padding: 0;
+}
+
 .nav_links>a {
     color: rgba(225, 225, 225, .5) !important;
     text-decoration: none;
-    margin: 7px 2px 0 6px;
 }
-.nav_links>a:hover{
+
+.nav_links>a:hover {
     color: rgba(225, 225, 225, .75) !important;
+}
+
+.cart {
+    position: relative;
+    margin-right: 10px;
+}
+
+.cart_quan {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 12px;
+    display: inline-block;
+    position: absolute;
+}
+
+#con_icon {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+@media screen and (max-width:991px) {
+    #nav_brand {
+        position: absolute;
+        left: 85px;
+        top: 10px
+    }
 }

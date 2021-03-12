@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { Card } from "react-bootstrap"
 import { useDispatch } from "react-redux"
 import { quantityChanger } from "../../redux/actions/cartActions"
 import '.././ProductDetails/quantity.css'
+import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 
 const Quantity = ({ item }) => {
     const dispatch = useDispatch()
@@ -19,7 +19,8 @@ const Quantity = ({ item }) => {
         }
     return (
         <div>
-            <Card.Text>Quantity: {quantity}<span className='decrement' onClick={() => decrement(item)} >-</span><span className='increment' onClick={() => increment(item)} >+</span> </Card.Text>
+            <AiOutlineMinus onClick={() => decrement(item)} className='decrement' />
+            {quantity}<AiOutlinePlus onClick={() => increment(item)} className='increment' />
         </div>
     )
 }

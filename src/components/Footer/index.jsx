@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <Card id='footer'>
             <Card.Footer>
-                All rights reserved 2021.
+                Buy and Sell &copy;2021
             </Card.Footer>
         </Card>
     )

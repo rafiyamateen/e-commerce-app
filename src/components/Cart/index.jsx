@@ -1,40 +1,100 @@
-import { useState } from "react";
-import { Button, Card, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from '../../redux/actions/cartActions'
 import Quantity from "./Quantity";
 import './cart.css'
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const cartItems = useSelector(state => state.cart)
-        || JSON.parse(localStorage.getItem('cartItems'))
-        ,
+    const cartItems = useSelector(state => state.cart) ||
+        JSON.parse(localStorage.getItem('cartItems')),
         dispatch = useDispatch()
-    console.log(cartItems);
-
-    return (
-        <Container id='cart_container'>
-            {cartItems ? cartItems.map((item) => {
-                return (
-                    <div key={item.id} >
-                        <Row id='cart_row' >
-                            <Card.Img id='cart_img' src={item.img} />
-                            <div>
-                                <Card.Title>
-                                    {item.title}
-                                </Card.Title>
-                            </div>
-                            <div>
-                                <Quantity item={item} />
-                                <Button onClick={() => { dispatch(removeFromCart(item)) }} >Remove</Button>
-                            </div>
-                        </Row>
-                        <hr />
-                    </div>
-                )
-            })
-                : null}
-        </Container>
+    let total = 0
+    if (cartItems && cartItems[0]) {
+        for (const item of cartItems) {
+            total += item.price * item.quantity
+        }
+    }
+    document.title = 'Your Cart'
+    return (<>
+        { cartItems?.[0] ?
+            <Container id='cart_container'>
+                < Row className='head_foot' >
+                    <Col> <Card.Title>Products</Card.Title></Col>
+                    <Col> <Card.Title>Details</Card.Title></Col>
+                    <Col> <Card.Title className='align_right'>Quantity</Card.Title></Col>
+                </Row >
+                <hr />
+                {cartItems ? cartItems.map((item) => {
+                    return (
+                        <div key={item.id} >
+                            <Row className='cart_row' >
+                                <span className='del_cart' onClick={() => { dispatch(removeFromCart(item)) }}>&times;</span>
+                                <Col className='cart_img_col'>
+                                    <Link to={{
+                                        pathname: `products/${item.title}`,
+                                        state: item
+                                    }}>
+                                        <Card.Img className='cart_img' src={item.img} alt={`${item.title} ${item.category}`} />
+                                    </Link>
+                                </Col>
+                                <Col className='cart_detail'>
+                                    <Card.Title className='title'>
+                                        {`${item.title[0].toUpperCase()}${item.title.slice(1)}`}
+                                    </Card.Title>
+                                    <Col>
+                                        Rs.{item.price}
+                                    </Col>
+                                </Col>
+                                <Col className='align_right'>
+                                    <Col>
+                                        Rs.{item.price * item.quantity}
+                                    </Col>
+                                    <Quantity item={item} />
+                                </Col>
+                            </Row>
+                            <hr />
+                        </div>
+                    )
+                }) : null}
+                <Row className='head_foot foot_row' >
+                    <Row>
+                        <Col>
+                            Subtotal
+                    </Col>
+                        <Col className='align_right'>
+                            Rs.{total}
+                        </Col>
+                    </Row>
+                    <hr />
+                    <Row>
+                        <Col>
+                            Shipping Charges
+                    </Col>
+                        <Col className='align_right'>
+                            Rs.100
+                </Col>
+                    </Row>
+                    <hr className='total_sec' />
+                    <Row>
+                        <Col>
+                            Total
+                    </Col>
+                        <Col className='align_right'>
+                            Rs.{total + 100}
+                        </Col>
+                    </Row>
+                </Row>
+                <Row className='checkout'>
+                    <Button as={Link} to='/checkout' className='fullWidthBtn'>Go to Checkout</Button>
+                </Row>
+            </Container > :
+            <Col className='empty_cart'>
+                <h3 className='empty_cart_head'>Oops! you have no item in the cart</h3>
+                <Link to='/' className='empty_cart_link'>Continue Shopping</Link>
+            </Col>
+        }
+    </>
     )
 }
 
