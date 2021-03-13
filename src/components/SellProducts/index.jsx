@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Button, Form, InputGroup, Spinner } from "react-bootstrap"
 import { FiCamera } from "react-icons/fi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addProductToSell } from "../../redux/actions/productsActions";
 import { storage } from '../../firebase'
@@ -9,15 +9,15 @@ import './sellProducts.css'
 import './../Login/forms.css'
 
 const SellProducts = () => {
-    let [newId, setId] = useState(localStorage.getItem('id') || 5);
-    const [newProduct, setNewProduct] = useState({
-        id: Number(newId),
-        img: '',
-        title: '',
-        price: '',
-        description: '',
-        category:'fashion'
-    }),
+    const products = useSelector(state => state.products.products),
+        [newProduct, setNewProduct] = useState({
+            id: products.length + 1,
+            img: '',
+            title: '',
+            price: '',
+            description: '',
+            category: 'fashion'
+        }),
         [img, setImg] = useState(),
         dispatch = useDispatch(),
         history = useHistory(),
@@ -34,8 +34,6 @@ const SellProducts = () => {
             }
             if (ready) {
                 dispatch(addProductToSell(newProduct))
-                setId(++newId)
-                localStorage.setItem('id', newId)
                 history.push('/')
             }
         },

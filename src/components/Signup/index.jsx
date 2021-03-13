@@ -41,7 +41,8 @@ const Signup = () => {
             }
             if (document.getElementsByName('password')[0].value !== document.getElementsByName('confirm_password')[0].value) {
                 alert('Please confirm your password again!')
-                document.getElementsByName('password')[0].focus()
+                document.getElementsByName('confirm_password')[0].focus()
+                setLogged(false)
                 return false
             }
             if (savedData) {
@@ -70,11 +71,11 @@ const Signup = () => {
                 confirm_password: ''
             })
         }
-    },[logged,data,dispatch,history])
+    }, [logged, data, dispatch, history])
     return (
         <Form onSubmit={onSubmit} className='form' noValidate >
             <h2>Sign up</h2>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group>
                 <Form.Label>User name</Form.Label>
                 <Form.Control onChange={onChange} value={data.username} type="text" name='username' placeholder="Enter your name" />
             </Form.Group>
@@ -86,7 +87,7 @@ const Signup = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control onChange={onChange} value={data.password} type="password" name='password' placeholder="Enter your password" />
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group>
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control onChange={onChange} value={data.confirm_password} type="password" name='confirm_password' placeholder="Confirm your password" />
             </Form.Group>
