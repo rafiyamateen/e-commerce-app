@@ -14,6 +14,7 @@ const Checkout = () => {
         cartItems = useSelector(state => state.cart),
         [show, setShow] = useState(false),
         [edit, setEdit] = useState(false),
+        [values, setValues] = useState({ username: account.username, email: account.email }),
         dispatch = useDispatch(),
         handleClose = () => {
             setShow(false)
@@ -30,10 +31,17 @@ const Checkout = () => {
         },
         onEdit = () => {
             setEdit(true)
+        },
+        editOnChange = (e) => {
+            setValues(prevState => ({
+                ...prevState,
+                [e.target.name]: e.target.value
+            }))
         }
     useEffect(() => {
         edit && document.getElementsByName('username')[0]?.focus()
     }, [edit])
+    document.title = 'Checkout'
     return (
         <Container className='checkout_container'>
             <div className='checkout_cards'>
@@ -61,11 +69,11 @@ const Checkout = () => {
                 {edit ? <>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>User name</Form.Label>
-                        <Form.Control value={account.username} type="text" name='username' placeholder="Enter your name" />
+                        <Form.Control onChange={editOnChange} value={values.username} type="text" name='username' placeholder="Enter your name" />
                     </Form.Group>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control value={account.email} type="email" name='email' placeholder="Enter your email" />
+                        <Form.Control onChange={editOnChange} value={values.email} type="email" name='email' placeholder="Enter your email" />
                     </Form.Group></> : <>
                     {account.username} <br />
                     {account.email}

@@ -36,8 +36,8 @@ const Header = () => {
                         Favorites
                     </Nav.Link>
                     <NavDropdown onSelect={handleSelect} title="Categories" id="collasible-nav-dropdown">
-                        <NavDropdown.Item eventKey='mobile phones' >Mobile Phones</NavDropdown.Item>
                         <NavDropdown.Item eventKey='fashion' >Fashion</NavDropdown.Item>
+                        <NavDropdown.Item eventKey='mobile phones' >Mobile Phones</NavDropdown.Item>
                         <NavDropdown.Item eventKey='electronics and home appliances' >Electronics and Home Appliances</NavDropdown.Item>
                     </NavDropdown>
                     {login.username ?

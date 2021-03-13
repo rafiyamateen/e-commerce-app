@@ -19,6 +19,8 @@ const formReducer = (state = initState, action) => {
             }
         case LOGOUT:
             localStorage.removeItem('login')
+            localStorage.removeItem('cartItems')
+            localStorage.removeItem('favorites')
             return {
                 ...state, login: {}
             }

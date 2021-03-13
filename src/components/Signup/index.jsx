@@ -53,21 +53,24 @@ const Signup = () => {
                         break
                     }
                 }
-                if (logged) {
-                    const { confirm_password, ...account } = data
-                    dispatch(signup(account))
-                    localStorage.setItem('login', JSON.stringify(account))
-                    history.push('/')
-                    alert('You have created an account!')
-                    setData({
-                        username: '',
-                        email: '',
-                        password: '',
-                        confirm_password: ''
-                    })
-                }
             }
         }
+    useEffect(() => {
+
+        if (logged) {
+            const { confirm_password, ...account } = data
+            dispatch(signup(account))
+            localStorage.setItem('login', JSON.stringify(account))
+            history.push('/')
+            alert('You have created an account!')
+            setData({
+                username: '',
+                email: '',
+                password: '',
+                confirm_password: ''
+            })
+        }
+    },[logged])
     return (
         <Form onSubmit={onSubmit} className='form' noValidate >
             <h2>Sign up</h2>
