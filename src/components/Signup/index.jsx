@@ -70,7 +70,7 @@ const Signup = () => {
                 confirm_password: ''
             })
         }
-    },[logged])
+    },[logged,data,dispatch,history])
     return (
         <Form onSubmit={onSubmit} className='form' noValidate >
             <h2>Sign up</h2>
