@@ -36,3 +36,7 @@ input:focus, textarea:focus {
   outline: none;
   text-decoration: none;
 }
+.no_fav{
+  margin-top: 20%;
+  text-align: center;
+}

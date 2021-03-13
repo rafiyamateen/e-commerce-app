@@ -16,7 +16,7 @@ const SellProducts = () => {
         title: '',
         price: '',
         description: '',
-        category: ''
+        category: document.getElementsByName('category')[0]?.value
     }),
         [img, setImg] = useState(),
         dispatch = useDispatch(),
@@ -51,7 +51,7 @@ const SellProducts = () => {
         selectCategory = (e) => {
             setNewProduct(prev => ({
                 ...prev,
-                category: e.value
+                category: e.target.value
             }))
         },
         addImg = () => {
@@ -78,8 +78,8 @@ const SellProducts = () => {
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Select Category</Form.Label>
                     <Form.Control onChange={selectCategory} name='category' as="select">
-                        <option>mobile phones </option>
-                        <option>fashion </option>
+                        <option>mobile phones</option>
+                        <option>fashion</option>
                         <option>electronics and home appliances</option>
                         <option>all</option>
                     </Form.Control>

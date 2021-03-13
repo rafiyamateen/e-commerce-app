@@ -32,8 +32,12 @@ function App() {
         <PrivateRoute path='/cart' component={Cart} />
         <PrivateRoute path='/sellProducts' component={SellProducts} />
         <Route path='/favorites' render={() => {
-          return (
-            <Products products={products.favorites} title='My Favorite Products' />)
+          return (<>{
+            products.favorites[0] ?
+              <Products products={products.favorites} title='My Favorite Products' /> :
+              <h3 className='no_fav'>You have no favorites yet!</h3>
+          }</>
+          )
         }} />
         <PrivateRoute path='/checkout' component={Checkout} />
         <PrivateRoute path='/category/:category' component={Category} />

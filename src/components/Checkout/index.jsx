@@ -28,7 +28,12 @@ const Checkout = () => {
                 return false
             }
         },
-        onEdit = () => { setEdit(true) }
+        onEdit = () => {
+            setEdit(true)
+        }
+    useEffect(() => {
+        edit && document.getElementsByName('username')[0]?.focus()
+    }, [edit])
     return (
         <Container className='checkout_container'>
             <div className='checkout_cards'>
