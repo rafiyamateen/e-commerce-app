@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import { Button, Container, Form, Modal, div } from "react-bootstrap"
+import { Button, Container, Form, Modal } from "react-bootstrap"
 import { AiFillEdit } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from 'react-router-dom'
 import { orderPlaced } from "../../redux/actions/cartActions"
 import './checkout.css'
+import NumberFormat from 'react-number-format';
 
 const Checkout = () => {
     useEffect(() => {
@@ -38,6 +39,7 @@ const Checkout = () => {
                 [e.target.name]: e.target.value
             }))
         }
+    let total = 0
     useEffect(() => {
         edit && document.getElementsByName('username')[0]?.focus()
     }, [edit])
@@ -83,13 +85,41 @@ const Checkout = () => {
             <div className='checkout_cards'>
                 <h3> Your order </h3>
                 {cartItems.map(item => {
+                    total += item.price * item.quantity
                     return (<div key={item.id} className='prod_detail' >
                         <span>
                             {item.quantity} &times; {item.title[0] + item.title.slice(1)}
                         </span>
-                        <span className='price'>Rs.{item.price * item.quantity}</span>
+                        <span className='price'>Rs.<NumberFormat value={item.price * item.quantity} displayType={'text'} thousandSeparator={true} /></span>
                     </div>)
                 })}
+                <hr className='checkout_hr' />
+                <div className='prod_detail'>
+                    <span>
+                        Subtotal
+                    </span>
+                    <span>
+                        Rs.<NumberFormat value={total} displayType={'text'} thousandSeparator={true} />
+                    </span>
+                </div>
+                <hr className='checkout_hr' />
+                <div className='prod_detail'>
+                    <span>
+                        Shipping Charges
+                    </span>
+                    <span>
+                        Rs.200
+                </span>
+                </div>
+                <hr className='checkout_hr' />
+                <div className='prod_detail'>
+                    <span>
+                        Total
+                    </span>
+                    <span className=''>
+                        Rs.<NumberFormat value={total + 200} displayType={'text'} thousandSeparator={true} />
+                    </span>
+                </div>
             </div>
             <div>
                 <Button className='fullWidthBtn' onClick={placeOrder} >Place Order</Button>

@@ -4,6 +4,7 @@ import { removeFromCart } from '../../redux/actions/cartActions'
 import Quantity from "./Quantity";
 import './cart.css'
 import { Link } from "react-router-dom";
+import NumberFormat from 'react-number-format';
 
 const Cart = () => {
     const cartItems = useSelector(state => state.cart) ||
@@ -32,7 +33,7 @@ const Cart = () => {
                                 <span className='del_cart' onClick={() => { dispatch(removeFromCart(item)) }}>&times;</span>
                                 <Col className='cart_img_col'>
                                     <Link to={{
-                                        pathname: `products/${item.title}`,
+                                        pathname: `products/${item.category.replace(/ /g, '_')}/${item.title.replace(/ /g, '_')}`,
                                         state: item
                                     }}>
                                         <Card.Img className='cart_img' src={item.img} alt={`${item.title} ${item.category}`} />
@@ -43,12 +44,12 @@ const Cart = () => {
                                         {`${item.title[0].toUpperCase()}${item.title.slice(1)}`}
                                     </Card.Title>
                                     <Col>
-                                        Rs.{item.price}
+                                        Rs.<NumberFormat value={item.price} displayType={'text'} thousandSeparator={true} />
                                     </Col>
                                 </Col>
                                 <Col className='align_right'>
                                     <Col>
-                                        Rs.{item.price * item.quantity}
+                                        Rs.<NumberFormat value={item.price * item.quantity} displayType={'text'} thousandSeparator={true} />
                                     </Col>
                                     <Quantity item={item} />
                                 </Col>
@@ -63,7 +64,7 @@ const Cart = () => {
                             Subtotal
                     </Col>
                         <Col className='align_right'>
-                            Rs.{total}
+                            Rs.<NumberFormat value={total} displayType={'text'} thousandSeparator={true} />
                         </Col>
                     </Row>
                     <hr />
@@ -72,7 +73,7 @@ const Cart = () => {
                             Shipping Charges
                     </Col>
                         <Col className='align_right'>
-                            Rs.100
+                            Rs.200
                 </Col>
                     </Row>
                     <hr className='total_sec' />
@@ -81,7 +82,7 @@ const Cart = () => {
                             Total
                     </Col>
                         <Col className='align_right'>
-                            Rs.{total + 100}
+                            Rs.<NumberFormat value={total + 200} displayType={'text'} thousandSeparator={true} />
                         </Col>
                     </Row>
                 </Row>

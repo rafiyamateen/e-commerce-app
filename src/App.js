@@ -28,8 +28,8 @@ function App() {
           return (
             <Products products={products.products} title='Buy & Sell' />)
         }} />
-        <Route path='/products/:product' component={ProductDetails} />
-        <PrivateRoute path='/cart' component={Cart} />
+        <Route path='/products/:category/:product' component={ProductDetails} />
+        <Route path='/cart' component={Cart} />
         <PrivateRoute path='/sellProducts' component={SellProducts} />
         <Route path='/favorites' render={() => {
           return (<>{
@@ -40,7 +40,7 @@ function App() {
           )
         }} />
         <PrivateRoute path='/checkout' component={Checkout} />
-        <PrivateRoute path='/category/:category' component={Category} />
+        <Route path='/category/:category' component={Category} />
         {!login.username && <><Route path='/signup' component={Signup} />
           <Route path='/login' component={Login} /></>}
         <Route component={NotFound} />

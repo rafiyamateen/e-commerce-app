@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { addToCart } from "../../redux/actions/cartActions";
 import Quantity from "./Quantity";
 import './productDetails.css'
+import NumberFormat from 'react-number-format';
 
 const ProductDetails = () => {
     const detail = useSelector(state => state.products.products),
@@ -18,17 +19,20 @@ const ProductDetails = () => {
     const title = product.title,
         titleTransform = title[0].toUpperCase() + title.slice(1)
     document.title = `${product.category} | ${titleTransform}`
-
     return (
         <Container>
             <Row className='prod_details'>
                 <Col>
-                    <Card.Img src={product.img} />
+                    <Card.Img src={product.img} alt={product.title} />
                 </Col>
                 <Col id='detail_Col'>
                     <div>
                         <Card.Title>{titleTransform}</Card.Title>
                         <Card.Body>{product.description} </Card.Body>
+                        <Card.Body>
+                            <b>Price: </b>
+                            Rs. <NumberFormat value={product.price} displayType={'text'} thousandSeparator={true} />
+                        </Card.Body>
                     </div>
                     <div id='quan_div'>
                         <Quantity item={product} />

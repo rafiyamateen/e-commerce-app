@@ -10,7 +10,7 @@ export const addToCart = (product, details) => {
         }
     }
     if (!productExists) {
-        const cartProduct = { ...product, quantity: 1 }
+        const cartProduct = details ? product : { ...product, quantity: 1 }
         cartItems.push(cartProduct)
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
@@ -20,9 +20,16 @@ export const addToCart = (product, details) => {
     }
 }
 export const removeFromCart = (item) => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
-    const filteredItems = cartItems.filter((cartItem) => item.id !== cartItem.id)
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [],
+        products = JSON.parse(localStorage.getItem('allProducts')),
+        filteredItems = cartItems.filter((cartItem) => item.id !== cartItem.id)
+    for (const prod of products) {
+        if (item.id === prod.id) {
+            prod.quantity = 1
+        }
+    }
     localStorage.setItem('cartItems', JSON.stringify(filteredItems))
+    localStorage.setItem('allProducts', JSON.stringify(products))
     return {
         type: REMOVE_FROM_CART,
         payload: filteredItems
